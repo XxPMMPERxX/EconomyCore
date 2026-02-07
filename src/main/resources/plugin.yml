@@ -8,3 +8,4 @@ api: 2.0.0
 load: POSTWORLD
 depend:
   - DBConnectorN
+  - PlayersID

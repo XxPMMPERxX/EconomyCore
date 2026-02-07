@@ -7,7 +7,7 @@ import org.jetbrains.exposed.v1.datetime.datetime
 object MoneyTransactionsTable : IntIdTable("money_transactions") {
     val from = optReference("from_id", WalletsTable)
     val to = optReference("to_id", WalletsTable)
-    val amount = long("amount").default(0)
+    val amount = long("amount")
     val details = text("details").nullable()
     val createdAt = datetime("created_at").defaultExpression(CurrentDateTime)
 }

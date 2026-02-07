@@ -16,6 +16,7 @@ import jp.asteria.player.primaryId
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.exists
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import kotlin.time.Clock
@@ -54,6 +55,7 @@ class EconomyCore : PluginBase(), Listener, IEconomyCore {
     @EventHandler(priority = EventPriority.LOW)
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
+        server.broadcastMessage(existsData(player).toString())
         if (!existsData(player)) {
             createWallet(player)
             increaseMoney(player, DEFAULT_BALANCE, "初期所持金")
