@@ -13,7 +13,18 @@ class WalletEntity(id: EntityID<Int>) : IntEntity(id) {
     var createdAt by WalletsTable.createdAt
     var updatedAt by WalletsTable.updatedAt
 
+    /**
+     * 送金元としてのトランザクションデータ
+     */
     val sentTransactions by MoneyTransactionEntity optionalReferrersOn MoneyTransactionsTable.from
+
+    /**
+     * 送金先としてのトランザクションデータ
+     */
     val receivedTransactions by MoneyTransactionEntity optionalReferrersOn MoneyTransactionsTable.to
+
+    /**
+     * 送受信をまとめて取得(createdAt でソート)
+     */
     val allTransactions = (sentTransactions + receivedTransactions).sortedBy { it.createdAt }
 }
