@@ -10,5 +10,6 @@ class MoneyTransactionEntity(id: EntityID<Int>) : IntEntity(id) {
     var from by WalletEntity optionalReferencedOn MoneyTransactionsTable.from
     var to by WalletEntity optionalReferencedOn MoneyTransactionsTable.to
     var amount by MoneyTransactionsTable.amount
+    var details by MoneyTransactionsTable.details
     var createdAt by MoneyTransactionsTable.createdAt
 }
